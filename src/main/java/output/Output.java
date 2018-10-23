@@ -25,6 +25,6 @@ public class Output {
 
         System.out.println("Вектор финальных вероятностей, полученный экспериментально: " + markChain.calculateFinalProbabilityVector());
 
-        System.out.println(Equations.calculateEquation(null, null));
+        System.out.println("Вектор финальных вероятностей, полученный теоретически: " + Equations.calculateEquation(matrix, firstStateVector));
     }
 }
