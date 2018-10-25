@@ -1,6 +1,6 @@
 package output;
 
-import probability.Equations;
+import probability.AnalogTime;
 import probability.MarkChain;
 import probability.Vector;
 
@@ -8,6 +8,7 @@ import java.util.*;
 
 public class Output {
     public static void main(String... args){
+        System.out.println("------------- Модель с дискретным временем -------------");
         System.out.println("Введите число вершин графа состояний:");
         Scanner in = new Scanner(System.in);
         Integer n = in.nextInt();
@@ -25,6 +26,32 @@ public class Output {
 
         System.out.println("Вектор финальных вероятностей, полученный экспериментально: " + markChain.calculateFinalProbabilityVector());
 
-        System.out.println("Вектор финальных вероятностей, полученный теоретически: " + Equations.calculateEquation(matrix, firstStateVector));
+        System.out.println("--------------- Модель с аналоговым временем ----------------");
+
+
+        System.out.println("Введите число состояний:");
+        n = in.nextInt();
+        firstStateVector = Vector.generate(n);
+
+        System.out.println("Вектор плотностей начальных состояний: " + firstStateVector);
+
+        for (int i = 0; i<n; i++){
+            List<Double> list = new ArrayList<>();
+            for (int j = 0; j<n; j++)
+                list.add(new Random().nextInt(999) / 1000.0);
+            matrix.add(new Vector(list));
+        }
+
+        System.out.println("Матрица плотностей вероятностей переходов: " + matrix);
+
+        System.out.println("Введите время работы: ");
+
+        Double t = in.nextDouble();
+
+        System.out.println("Проведем эксперименты");
+
+        System.out.println("Вектор конечных вероятностей, полученный экспериментально: " + AnalogTime.calculateFinalVector(matrix, firstStateVector, t));
+
+
     }
 }

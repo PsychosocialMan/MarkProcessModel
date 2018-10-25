@@ -9,11 +9,11 @@ public class Equations {
 
     public static List<Double> calculateEquation(List<Vector> matrix, Vector vector){
         RealMatrix coefficients =
-                new Array2DRowRealMatrix(new double[][]{{0.133, 0.867}, {0.331, 0.669}},//transformListOfVectorToMatrix(matrix),
+                new Array2DRowRealMatrix(transformListOfVectorToMatrix(matrix),
                         false);
         DecompositionSolver solver = new LUDecomposition(coefficients).getSolver();
 
-        RealVector constants = new ArrayRealVector(new double[]{0.031, 0.969},//transformVectorToArray(vector),
+        RealVector constants = new ArrayRealVector(transformVectorToArray(vector),
                 false);
         RealVector solution = solver.solve(constants);
         // solution.getEntry(0) - 0 элемент
