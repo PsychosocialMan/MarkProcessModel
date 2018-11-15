@@ -30,19 +30,21 @@ public class Output {
 
 
         System.out.println("Введите число состояний:");
-        n = in.nextInt();
-        firstStateVector = Vector.generate(n);
+        int nAnalog = in.nextInt();
+        Vector firstStateVectorAnalog = Vector.generate(nAnalog);
 
-        System.out.println("Вектор плотностей начальных состояний: " + firstStateVector);
+        System.out.println("Вектор плотностей начальных состояний: " + firstStateVectorAnalog);
 
-        for (int i = 0; i<n; i++){
+        List<Vector> matrixAnalog = new ArrayList<>();
+
+        for (int i = 0; i<nAnalog; i++){
             List<Double> list = new ArrayList<>();
-            for (int j = 0; j<n; j++)
+            for (int j = 0; j<nAnalog; j++)
                 list.add(new Random().nextInt(999) / 1000.0);
-            matrix.add(new Vector(list));
+            matrixAnalog.add(new Vector(list));
         }
 
-        System.out.println("Матрица плотностей вероятностей переходов: " + matrix);
+        System.out.println("Матрица плотностей вероятностей переходов: " + matrixAnalog);
 
         System.out.println("Введите время работы: ");
 
@@ -50,7 +52,7 @@ public class Output {
 
         System.out.println("Проведем эксперименты");
 
-        System.out.println("Вектор конечных вероятностей, полученный экспериментально: " + AnalogTime.calculateFinalVector(matrix, firstStateVector, t));
+        System.out.println("Вектор конечных вероятностей, полученный экспериментально: " + AnalogTime.calculateFinalVector(matrixAnalog, firstStateVectorAnalog, t));
 
 
     }
